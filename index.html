@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#05070d">
+<title>SAUD REPORT ADDA</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Share+Tech+Mono&display=swap');
+
+:root{
+--bg:#05070d;
+--cyan:#00eaff;
+--purple:#9061ff;
+--green:#00ffa3;
+--muted:#8b9bad;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+background:var(--bg);
+color:#f4f8ff;
+font-family:Inter,sans-serif;
+min-height:100vh;
+overflow-x:hidden;
+}
+
+body:before{
+content:"";
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(circle at 15% 20%,#173e5730,transparent 35%),
+radial-gradient(circle at 85% 75%,#55218b25,transparent 40%);
+}
+
+body:after{
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+pointer-events:none;
+opacity:.12;
+background-image:
+linear-gradient(#ffffff08 1px,transparent 1px),
+linear-gradient(90deg,#ffffff08 1px,transparent 1px);
+background-size:35px 35px;
+}
+
+header{
+position:sticky;
+top:0;
+z-index:50;
+height:76px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 6%;
+background:#070a12ed;
+backdrop-filter:blur(18px);
+border-bottom:1px solid #00eaff30;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+font-weight:900;
+letter-spacing:1.8px;
+font-size:14px;
+}
+
+.logo{
+width:42px;
+height:42px;
+border-radius:13px;
+display:grid;
+place-items:center;
+font-size:25px;
+color:white;
+background:linear-gradient(135deg,#9260ff,#00dfff);
+box-shadow:0 0 22px #795fff65;
+}
+
+.brand span{color:#9b75ff}
+
+.header-right{
+font:10px 'Share Tech Mono';
+color:var(--green);
+}
+
+.online-dot{
+display:inline-block;
+height:7px;
+width:7px;
+border-radius:50%;
+background:var(--green);
+box-shadow:0 0 12px var(--green);
+margin-right:6px;
+}
+
+main{
+max-width:900px;
+padding:35px 17px 70px;
+margin:auto;
+}
+
+.hero{
+text-align:center;
+padding:40px 0 35px;
+}
+
+.eyebrow{
+color:var(--cyan);
+font:12px 'Share Tech Mono';
+letter-spacing:4px;
+margin-bottom:22px;
+animation:glow 2s infinite alternate;
+}
+
+h1{
+font-size:clamp(34px,8vw,65px);
+font-weight:900;
+letter-spacing:-2.5px;
+line-height:1.13;
+animation:reveal .9s ease both;
+}
+
+.gradient{
+color:transparent;
+background:linear-gradient(90deg,#00eaff,#9c69ff,#00ffa3);
+background-size:200% auto;
+background-clip:text;
+-webkit-background-clip:text;
+animation:gradient 4s linear infinite;
+}
+
+.hero-line{
+height:2px;
+width:95px;
+margin:25px auto;
+background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+animation:line 2s infinite;
+}
+
+.hero-description{
+font-size:12px;
+line-height:2;
+letter-spacing:2px;
+color:#9bacc0;
+}
+
+.hero-terminal{
+display:inline-block;
+margin-top:23px;
+padding:12px 20px;
+border:1px solid #00eaff45;
+border-radius:8px;
+background:#050a11;
+font:11px 'Share Tech Mono';
+color:var(--green);
+}
+
+.cursor{animation:blink .7s infinite}
+
+@keyframes blink{50%{opacity:0}}
+@keyframes glow{to{text-shadow:0 0 18px var(--cyan)}}
+@keyframes gradient{to{background-position:200% center}}
+@keyframes line{50%{width:180px;opacity:.4}}
+@keyframes reveal{
+from{opacity:0;transform:translateY(25px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin:15px 0 28px;
+}
+
+.stat{
+background:#0b111a;
+border:1px solid #ffffff13;
+border-radius:12px;
+padding:15px 7px;
+text-align:center;
+}
+
+.stat strong{
+display:block;
+color:var(--cyan);
+font:16px 'Share Tech Mono';
+margin-bottom:7px;
+}
+
+.stat small{
+color:var(--muted);
+font-size:9px;
+letter-spacing:1px;
+}
+
+.panel{
+padding:24px;
+background:linear-gradient(145deg,#101927,#090e17);
+border:1px solid #00eaff30;
+border-radius:19px;
+box-shadow:0 20px 65px #0008;
+}
+
+.panel-heading{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+margin-bottom:22px;
+}
+
+.panel-heading h2{
+font-size:15px;
+letter-spacing:1px;
+}
+
+.ready{
+color:var(--green);
+font:10px 'Share Tech Mono';
+}
+
+label{
+display:block;
+margin:20px 0 10px;
+font-size:12px;
+font-weight:700;
+color:#c5d6e5;
+}
+
+input,select,textarea{
+width:100%;
+background:#050a11;
+color:white;
+border:1px solid #293d50;
+border-radius:11px;
+padding:16px;
+font:13px Inter;
+outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+border-color:var(--cyan);
+box-shadow:0 0 17px #00eaff18;
+}
+
+textarea{resize:vertical;min-height:110px}
+
+select option{background:#101722}
+
+.primary-btn{
+width:100%;
+margin-top:24px;
+padding:19px;
+border:0;
+border-radius:12px;
+background:linear-gradient(100deg,#855cff,#00cfff);
+color:#fff;
+font-size:13px;
+font-weight:900;
+letter-spacing:1.2px;
+box-shadow:0 8px 30px #7654ff35;
+cursor:pointer;
+transition:.2s;
+}
+
+.primary-btn:active{transform:scale(.98)}
+.primary-btn:disabled{opacity:.55;cursor:wait}
+
+.note{
+color:#8596a9;
+font-size:10px;
+text-align:center;
+line-height:1.9;
+margin-top:18px;
+}
+
+#scanner{
+display:none;
+margin-top:24px;
+padding:22px 16px;
+background:#040a10;
+border:1px solid #00eaff50;
+border-radius:18px;
+overflow:hidden;
+}
+
+.scan-heading{
+display:flex;
+justify-content:space-between;
+font:11px 'Share Tech Mono';
+color:var(--cyan);
+}
+
+.radar{
+width:190px;
+height:190px;
+margin:30px auto;
+position:relative;
+border-radius:50%;
+border:1px solid #00eaff80;
+display:grid;
+place-items:center;
+background:
+linear-gradient(90deg,transparent 49.5%,#00eaff35 50%,transparent 50.5%),
+linear-gradient(transparent 49.5%,#00eaff35 50%,transparent 50.5%),
+repeating-radial-gradient(circle,transparent 0 30px,#00eaff20 31px 32px);
+box-shadow:0 0 35px #00eaff20,inset 0 0 35px #00eaff10;
+}
+
+.radar:before{
+content:"";
+position:absolute;
+inset:0;
+border-radius:50%;
+background:conic-gradient(transparent 65%,#00eaff90);
+animation:rotate 2s linear infinite;
+}
+
+.radar:after{
+content:"";
+position:absolute;
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--green);
+box-shadow:0 0 18px var(--green);
+}
+
+.radar-center{
+z-index:2;
+text-align:center;
+font:11px 'Share Tech Mono';
+color:var(--green);
+}
+
+.radar-center strong{
+display:block;
+font-size:36px;
+margin-bottom:5px;
+}
+
+@keyframes rotate{to{transform:rotate(360deg)}}
+
+.target{
+text-align:center;
+font:14px 'Share Tech Mono';
+color:white;
+overflow-wrap:anywhere;
+}
+
+.progress-heading{
+display:flex;
+justify-content:space-between;
+font:11px 'Share Tech Mono';
+color:var(--cyan);
+margin:25px 0 10px;
+}
+
+.progress{
+height:7px;
+border-radius:20px;
+background:#1a2935;
+overflow:hidden;
+}
+
+#progressFill{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,var(--green),var(--cyan));
+box-shadow:0 0 15px var(--cyan);
+transition:width .2s;
+}
+
+.terminal{
+margin-top:22px;
+padding:15px;
+min-height:145px;
+max-height:220px;
+overflow:auto;
+background:#020609;
+border:1px solid #00ffa32a;
+border-radius:10px;
+font:11px/2 'Share Tech Mono';
+color:var(--green);
+}
+
+.log{animation:reveal .3s ease}
+
+.scan-status{
+text-align:center;
+font:11px 'Share Tech Mono';
+letter-spacing:2px;
+color:var(--cyan);
+margin-top:18px;
+}
+
+#result{
+display:none;
+margin-top:20px;
+padding:20px;
+border:1px solid #00ffa355;
+border-radius:13px;
+background:#00ffa309;
+font-size:12px;
+line-height:2;
+overflow-wrap:anywhere;
+}
+
+#result h3{color:var(--green);margin-bottom:12px}
+#result a{color:var(--cyan)}
+
+.guide{margin-top:35px}
+
+.section-title{
+text-align:center;
+margin-bottom:22px;
+}
+
+.section-title h2{
+font-size:21px;
+letter-spacing:1px;
+}
+
+.section-title p{
+color:var(--muted);
+font-size:11px;
+margin-top:9px;
+}
+
+.guide-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.guide-card{
+background:#0b121c;
+border:1px solid #ffffff12;
+padding:18px 12px;
+border-radius:13px;
+}
+
+.guide-card strong{
+display:block;
+font:19px 'Share Tech Mono';
+color:var(--cyan);
+margin-bottom:12px;
+}
+
+.guide-card h3{font-size:12px;margin-bottom:8px}
+.guide-card p{font-size:10px;line-height:1.8;color:var(--muted)}
+
+.footer{
+border-top:1px solid #ffffff15;
+margin-top:55px;
+padding:28px 15px;
+text-align:center;
+font-size:10px;
+line-height:2.1;
+color:var(--muted);
+}
+
+.footer b{color:var(--cyan)}
+
+@media(max-width:550px){
+header{height:68px;padding:0 14px}
+.brand{font-size:11px;letter-spacing:1px;gap:8px}
+.logo{width:35px;height:35px}
+main{padding-top:20px}
+.hero{padding-top:30px}
+.panel{padding:19px 14px}
+.radar{width:165px;height:165px}
+.guide-grid{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){
+*,*:before,*:after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <div class="brand">
+  <div class="logo">S</div>
+  SAUD <span>REPORT ADDA</span>
+ </div>
+ <div class="header-right">
+  <i class="online-dot"></i> SYSTEM ONLINE
+ </div>
+</header>
+
+<main>
+
+<section class="hero">
+ <div class="eyebrow">◈ SAUD CYBER INTEL X ◈</div>
+
+ <h1>
+  YOUR <span class="gradient">REPORTING</span><br>
+  <span class="gradient">IS NOW PROFESSIONAL</span>
+ </h1>
+
+ <div class="hero-line"></div>
+
+ <p class="hero-description">
+  PRECISION IN EVERY REPORT.<br>
+  PROFESSIONAL CASE REVIEW EXPERIENCE.
+ </p>
+
+ <div class="hero-terminal">
+  ● SYSTEM READY_ <span class="cursor">|</span>
+ </div>
+</section>
+
+<section class="stats">
+ <div class="stat">
+  <strong>01</strong>
+  <small>TARGET INPUT</small>
+ </div>
+ <div class="stat">
+  <strong>02</strong>
+  <small>CASE REVIEW</small>
+ </div>
+ <div class="stat">
+  <strong>03</strong>
+  <small>REPORT GUIDE</small>
+ </div>
+</section>
+
+<section class="panel">
+
+ <div class="panel-heading">
+  <h2>◈ TARGET IDENTIFICATION</h2>
+  <span class="ready">● READY</span>
+ </div>
+
+ <label>INSTAGRAM USERNAME / PROFILE LINK</label>
+ <input id="username"
+ placeholder="@username or Instagram profile URL"
+ autocomplete="off">
+
+ <label>CONCERN CATEGORY</label>
+ <select id="category">
+  <option value="">Select concern category</option>
+  <option>Impersonation</option>
+  <option>Harassment or bullying</option>
+  <option>Scam or fraud</option>
+  <option>Spam</option>
+  <option>Intellectual property violation</option>
+  <option>Other genuine policy concern</option>
+ </select>
+
+ <label>ADDITIONAL CASE DETAILS</label>
+ <textarea id="details"
+ placeholder="Describe the genuine concern and relevant evidence..."></textarea>
+
+ <button class="primary-btn" id="start">
+  INITIALIZE CYBER REVIEW →
+ </button>
+
+ <p class="note">
+  🔒 No Instagram password required.<br>
+  No automated mass reporting or account access.
+ </p>
+
+</section>
+
+<section id="scanner">
+
+ <div class="scan-heading">
+  <span>◈ SAUD CYBER SCANNER</span>
+  <span>VISUAL SIMULATION</span>
+ </div>
+
+ <div class="radar">
+  <div class="radar-center">
+   <strong id="percent">0%</strong>
+   SCANNING
+  </div>
+ </div>
+
+ <div class="target" id="target"></div>
+
+ <div class="progress-heading">
+  <span>REVIEW PROGRESS</span>
+  <span id="progressText">0%</span>
+ </div>
+
+ <div class="progress">
+  <div id="progressFill"></div>
+ </div>
+
+ <div class="terminal" id="terminal"></div>
+
+ <div class="scan-status" id="status">
+  INITIALIZING SYSTEM...
+ </div>
+
+</section>
+
+<section id="result"></section>
+
+<section class="guide">
+ <div class="section-title">
+  <h2>REPORTING WORKFLOW</h2>
+  <p>Professional reporting assistance in three simple steps.</p>
+ </div>
+
+ <div class="guide-grid">
+  <div class="guide-card">
+   <strong>01 /</strong>
+   <h3>IDENTIFY TARGET</h3>
+   <p>Enter the relevant public Instagram profile and identify the genuine concern.</p>
+  </div>
+
+  <div class="guide-card">
+   <strong>02 /</strong>
+   <h3>REVIEW CASE</h3>
+   <p>Organize the available details and understand the applicable reporting category.</p>
+  </div>
+
+  <div class="guide-card">
+   <strong>03 /</strong>
+   <h3>OFFICIAL REPORT</h3>
+   <p>Use Instagram's official reporting process and provide truthful supporting evidence.</p>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer class="footer">
+ <b>SAUD REPORT ADDA</b><br>
+ POWERED BY SAUD CYBER INTEL X<br>
+ Professional Reporting Assistance Interface<br>
+ © 2026 SAUD. ALL RIGHTS RESERVED.
+</footer>
+
+<script>
+const $ = id => document.getElementById(id);
+
+let scanTimer = null;
+
+function getUsername(value){
+ value=value.trim().replace(/\/+$/,'');
+
+ const match=value.match(
+ /(?:https?:\/\/)?(?:www\.)?instagram\.com\/([a-zA-Z0-9._]+)\/?(?:\?.*)?$/i
+ );
+
+ if(match)return match[1];
+
+ if(/^[a-zA-Z0-9._]{1,30}$/.test(value))return value;
+
+ return null;
+}
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,c=>({
+ '&':'&amp;',
+ '<':'&lt;',
+ '>':'&gt;',
+ '"':'&quot;',
+ "'":'&#39;'
+ })[c]);
+}
+
+function addLog(message){
+ const line=document.createElement('div');
+ line.className='log';
+ line.textContent='[SYS] '+message;
+
+ $('terminal').appendChild(line);
+ $('terminal').scrollTop=$('terminal').scrollHeight;
+}
+
+$('start').addEventListener('click',()=>{
+
+ if(scanTimer){
+  clearInterval(scanTimer);
+  scanTimer=null;
+ }
+
+ const username=getUsername($('username').value);
+ const category=$('category').value;
+
+ $('result').style.display='none';
+
+ if(!username){
+  alert('Enter a valid Instagram username or profile link.');
+  return;
+ }
+
+ if(!category){
+  alert('Please select a concern category.');
+  return;
+ }
+
+
+ startScan(username,category);
+});
+
+function startScan(username,category){
+
+ $('scanner').style.display='block';
+ $('start').disabled=true;
+ $('start').textContent='SCANNER RUNNING...';
+
+ $('target').textContent='TARGET: @'+username;
+ $('terminal').innerHTML='';
+
+ $('percent').textContent='0%';
+ $('progressText').textContent='0%';
+ $('progressFill').style.width='0%';
+
+ const stages=[
+  'Booting SAUD CYBER INTEL X...',
+  'Validating submitted profile format...',
+  'Preparing concern category...',
+  'Organizing case description...',
+  'Preparing official reporting guidance...',
+  'Finalizing review interface...'
+ ];
+
+ let progress=0;
+ let stage=-1;
+
+ addLog('SAUD CYBER INTEL X initialized.');
+ addLog('Review interface activated.');
+
+ const interval=setInterval(()=>{
+
+  progress=Math.min(
+   progress+Math.floor(Math.random()*5)+2,
+   100
+  );
+
+  $('percent').textContent=progress+'%';
+  $('progressText').textContent=progress+'%';
+  $('progressFill').style.width=progress+'%';
+
+  const current=Math.min(
+   Math.floor(progress/17),
+   stages.length-1
+  );
+
+  if(current!==stage){
+   stage=current;
+   addLog(stages[stage]);
+   $('status').textContent=stages[stage].toUpperCase();
+  }
+
+  if(progress>=100){
+   clearInterval(interval);
+   scanTimer=null;
+   finishScan(username,category);
+  }
+
+ },260);
+
+ scanTimer=interval;
+
+ $('scanner').scrollIntoView({
+  behavior:'smooth',
+  block:'center'
+ });
+}
+
+function finishScan(username,category){
+
+ $('status').textContent='REVIEW PREPARATION COMPLETE ✓';
+
+ addLog('Review interface completed.');
+ addLog('Official reporting guidance is ready.');
+
+ const profile=
+ 'https://www.instagram.com/'+
+ encodeURIComponent(username)+'/';
+
+ const safeUsername=escapeHTML(username);
+ const safeCategory=escapeHTML(category);
+ const safeDetails=escapeHTML($('details').value.trim());
+
+ $('result').innerHTML=`
+  <h3>✓ CASE REVIEW PREPARED</h3>
+
+  <p><b>Target:</b> @${safeUsername}</p>
+  <p><b>Category:</b> ${safeCategory}</p>
+  <p><b>Case details:</b> ${safeDetails}</p>
+
+  <p><b>Profile verification:</b> Not performed</p>
+  <p><b>Report submission:</b> Not submitted</p>
+  <p><b>Review status:</b> Guide prepared</p>
+
+  <br>
+
+  <a href="${profile}" target="_blank" rel="noopener">
+  OPEN INSTAGRAM PROFILE ↗
+  </a>
+
+  <br>
+
+  <a href="https://help.instagram.com/"
+  target="_blank" rel="noopener">
+  OFFICIAL INSTAGRAM HELP CENTER ↗
+  </a>
+
+  <p style="margin-top:15px;color:#8b9bad;font-size:10px">
+  This scanner is a visual interface simulation.
+  It does not verify accounts, access private data,
+  submit reports or guarantee account suspension.
+  Instagram makes its own enforcement decisions.
+  </p>
+ `;
+
+ $('result').style.display='block';
+
+ $('start').disabled=false;
+ $('start').textContent='INITIALIZE NEW REVIEW →';
+
+ $('result').scrollIntoView({
+  behavior:'smooth',
+  block:'center'
+ });
+}
+</script>
+
+</body>
+</html>
+
